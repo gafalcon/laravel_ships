@@ -11,7 +11,7 @@
     <title>Bare - Start Bootstrap Template</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <style>
@@ -64,7 +64,8 @@
     </div>
 
     <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="/js/app.js"></script>
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
   </body>
 
 </html>
