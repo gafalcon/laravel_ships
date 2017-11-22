@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('index');
 });
+
+Route::resources([
+    'embarcacion' => 'EmbarcacionController',
+    'capitan' => 'CapitanController'
+]);

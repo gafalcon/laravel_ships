@@ -15,6 +15,7 @@ class CapitanController extends Controller
     public function index()
     {
         //
+        return view('capitan.index');
     }
 
     /**
@@ -25,6 +26,7 @@ class CapitanController extends Controller
     public function create()
     {
         //
+        return view('capitan.create');
     }
 
     /**
@@ -47,6 +49,7 @@ class CapitanController extends Controller
     public function show(Capitan $capitan)
     {
         //
+        return view('capitan.show');
     }
 
     /**
@@ -58,6 +61,7 @@ class CapitanController extends Controller
     public function edit(Capitan $capitan)
     {
         //
+        return view('capitan.edit', compact('capitan'));
     }
 
     /**

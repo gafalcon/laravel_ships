@@ -15,6 +15,7 @@ class CreateCapitansTable extends Migration
     {
         Schema::create('capitans', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
             $table->timestamps();
         });
     }

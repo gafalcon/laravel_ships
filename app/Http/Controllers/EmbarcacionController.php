@@ -15,6 +15,7 @@ class EmbarcacionController extends Controller
     public function index()
     {
         //
+        return view('embarcacion.index');
     }
 
     /**
@@ -25,6 +26,7 @@ class EmbarcacionController extends Controller
     public function create()
     {
         //
+        return view('embarcacion.create');
     }
 
     /**
@@ -47,6 +49,7 @@ class EmbarcacionController extends Controller
     public function show(Embarcacion $embarcacion)
     {
         //
+        return view('embarcacion.show');
     }
 
     /**
@@ -58,6 +61,7 @@ class EmbarcacionController extends Controller
     public function edit(Embarcacion $embarcacion)
     {
         //
+        return view('embarcacion.edit', compact('embarcacion'));
     }
 
     /**
