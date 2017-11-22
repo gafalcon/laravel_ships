@@ -13,9 +13,14 @@ class CreateZarpesTable extends Migration
      */
     public function up()
     {
-        Schema::create('zarpes', function (Blueprint $table) {
+        Schema::create('Zarpe', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->datetime('fecha_salida');
+            $table->datetime('fecha_arribo');
+            $table->string('calidad');
+            $table->integer('capitan_id')->unsigned();
+            $table->foreign('capitan_id')->references('id')->on('Capitan');
         });
     }
 
@@ -26,6 +31,6 @@ class CreateZarpesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('zarpes');
+        Schema::dropIfExists('Zarpe');
     }
 }

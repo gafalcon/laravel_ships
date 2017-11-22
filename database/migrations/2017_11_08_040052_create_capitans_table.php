@@ -13,9 +13,11 @@ class CreateCapitansTable extends Migration
      */
     public function up()
     {
-        Schema::create('capitans', function (Blueprint $table) {
+        Schema::create('Capitan', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('cedula')->unique();
+            $table->date('fecha_nacimiento');
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ class CreateCapitansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('capitans');
+        Schema::dropIfExists('Capitan');
     }
 }

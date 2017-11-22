@@ -13,9 +13,15 @@ class CreateEmbarcacionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('embarcacions', function (Blueprint $table) {
+        Schema::create('Embarcacion', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->string('codigo_barco')->unique();
+            $table->string('nombre');
+            $table->string('tipo');
+            $table->integer('capacidad');
+            $table->string('dimensiones');
+
         });
     }
 
@@ -26,6 +32,6 @@ class CreateEmbarcacionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('embarcacions');
+        Schema::dropIfExists('Embarcacion');
     }
 }

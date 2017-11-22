@@ -13,9 +13,16 @@ class CreateLancesTable extends Migration
      */
     public function up()
     {
-        Schema::create('lances', function (Blueprint $table) {
+        Schema::create('Lance', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->datetime('fecha_inicio');
+            $table->datetime('fecha_fin');
+            $table->smallInteger('temperatura_agua');
+            $table->point('posicion');
+            $table->decimal('toneladas');
+            $table->integer('zarpes_id')->unsigned();
+            $table->foreign('zarpes_id')->references('id')->on('Zarpe')->onDelete('cascade');
         });
     }
 
@@ -26,6 +33,6 @@ class CreateLancesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lances');
+        Schema::dropIfExists('Lance');
     }
 }
