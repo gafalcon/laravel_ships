@@ -14,6 +14,7 @@ class ZarpeController extends Controller
     public function index()
     {
         //
+        return view('zarpe.index');
     }
 
     /**
