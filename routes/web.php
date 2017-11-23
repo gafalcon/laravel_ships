@@ -17,5 +17,7 @@ Route::get('/', function () {
 
 Route::resources([
     'embarcacion' => 'EmbarcacionController',
-    'capitan' => 'CapitanController'
+    'capitan' => 'CapitanController',
+    'zarpe' => 'ZarpeController',
+    'lance' => 'LanceController'
 ]);
