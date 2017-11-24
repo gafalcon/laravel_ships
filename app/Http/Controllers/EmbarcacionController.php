@@ -38,6 +38,8 @@ class EmbarcacionController extends Controller
     public function store(Request $request)
     {
         //
+        Embarcacion::create($request->except("_token"));
+        return redirect('embarcacion');
     }
 
     /**

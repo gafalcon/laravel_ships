@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Capitan;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class CapitanController extends Controller
 {
@@ -38,6 +39,16 @@ class CapitanController extends Controller
     public function store(Request $request)
     {
         //
+        $fecha_nacimiento = $request->fecha_nacimiento;
+
+        Capitan::create([
+            "name" => $request->nombre,
+            "fecha_nacimiento" => Carbon::createFromFormat("m/d/Y", $fecha_nacimiento)->toDateString(),
+            "cedula" => $request->cedula
+        ]);
+        return redirect('capitan');
+        // dd(request()->all());
+        // return dd($request);
     }
 
     /**

@@ -2,19 +2,20 @@
 
 @section ('content')
     <h2>Nuevo Capitán</h2>
-    <form>
+    <form method="POST" action="/capitan">
+        {{ csrf_field() }}
         <div class="form-group">
             <label for="nombre">Nombre</label>
-            <input type="text" class="form-control" id="nombre" placeholder="Ingrese nombre">
+            <input name="nombre" type="text" class="form-control" id="nombre" placeholder="Ingrese nombre">
         </div>
         <div class="form-group">
             <label for="cedula">Número de cédula</label>
-            <input type="text" class="form-control" id="cedula" placeholder="cédula">
+            <input name="cedula" type="text" class="form-control" id="cedula" placeholder="cédula">
         </div>
         <div class="form-group">
             <label for="fecha_nacimiento">Fecha de Nacimiento</label>
             <div class="input-group date" data-provide="datepicker">
-                <input type="text" class="form-control" id="fecha_nacimiento">
+                <input name="fecha_nacimiento" type="text" class="form-control" id="fecha_nacimiento">
                 <div class="input-group-addon">
                     ...
                     <!-- <span class="glyphicon glyphicon-th"></span> -->
