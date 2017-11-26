@@ -1,7 +1,9 @@
 @extends ('template')
 
 @section ('content')
-    <h2>Lista de embarcaciones</h2>
+    <h2>Lista de embarcaciones
+        <a class="btn btn-primary" href="/embarcacion/crear">Registrar nueva</a>
+    </h2>
     <div class="input-group">
       <input type="text" class="form-control" placeholder="Buscar..." aria-label="Buscar ...">
       <span class="input-group-btn">
@@ -27,12 +29,15 @@
                             <p><b>Tipo:</b> Pesado</p>
                             <p><b>Capacidad:</b> 100</p>
                             <p><b>Dimensiones:</b> Dimension</p>
-                        </div>
-                        <div class="col">
                             <p>
                                 <button class="btn btn-primary">Editar</button>
                                 <button class="btn btn-danger">Eliminar</button>
                             </p>
+                        </div>
+                        <div class="col">
+                            <img src="http://3.bp.blogspot.com/-w59cQXKVQiw/ToXVBNPdi3I/AAAAAAAAAAc/py4abX8AI2U/s1600/barco-pesquero+2.jpg" alt="" class="card-img-top" />
+                        </div> 
+                        <div class="col">
                             <p>
                                 <button class="btn btn-info">Ver lista de zarpes</button>
                             </p>
