@@ -15,7 +15,8 @@ class EmbarcacionController extends Controller
     public function index()
     {
         //
-        return view('embarcacion.index');
+        $embarcaciones = Embarcacion::all();
+        return view('embarcacion.index', compact("embarcaciones"));
     }
 
     /**
@@ -38,8 +39,21 @@ class EmbarcacionController extends Controller
     public function store(Request $request)
     {
         //
-        Embarcacion::create($request->except("_token"));
-        return redirect('embarcacion');
+        if ($request->hasFile('photo')) {
+            if ($request->file('photo')->isValid()) {
+                $path = $request->photo->store('images/embarcacion');
+                $params = $request->except("_token");
+                $params["photo"] = $path;
+                Embarcacion::create($params);
+                return redirect('embarcacion');
+            }
+            else{
+                echo "invalid";
+            }
+        }
+        else{
+            echo "not file";
+        }
     }
 
     /**

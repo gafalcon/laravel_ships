@@ -3,7 +3,10 @@
 @section ('content')
 
     <link href="/css/capitan.css" rel="stylesheet">
-    <h2>Lista de Capitanes</h2>
+    <h2>
+        Lista de Capitanes
+        <a class="btn btn-primary" href="/capitan/crear">Registrar nuevo</a>
+    </h2>
     <div class="input-group">
       <input type="text" class="form-control" placeholder="Buscar..." aria-label="Buscar ...">
       <span class="input-group-btn">
@@ -11,18 +14,18 @@
       </span>
     </div>
     <br/>
+    <div class="row">
     @foreach ($captains as $captain)
-        <div class="card">
-            <!-- <img src="https://toogoodbuilt.com/wp-content/uploads/2015/02/user-placeholder.jpg" alt="" class="card-img-top" /> -->
-            <img src="{!! asset("storage/".$captain->image) !!}" alt="" class="card-img-top" width="200" height="300" />
+        <div class="card" style="margin: 5px;">
+            <img src="{!! asset("storage/".$captain->image) !!}" alt="" class="card-img-top" width="150" height="300" />
             <div class="card-body">
                 <h4 class="card-title">{{ $captain->name }}</h4>
                 <p class="card-text"><b>Cédula: </b>{{ $captain->cedula }}</p>
                 <p class="card-text"><b>Fecha de nacimiento: </b> {{ $captain->fecha_nacimiento }}</p>
                 <p class="card-text"><b>Último Zarpe: </b><a href="">Mar 12/12/2017 12:00</a></p>
                 <p class="card-text">
-                    <a href="#" class="btn btn-primary">Editar</a>
-                    <a href="#" class="btn btn-danger" onclick="deleteModal({{ $captain->id }}, '{{ $captain->name }}')">Eliminar</a>
+                    <a href="/capitan/{{ $captain->id }}/editar" class="btn btn-primary">Editar</a>
+                    <a href="" class="btn btn-danger" onclick="deleteModal({{ $captain->id }}, '{{ $captain->name }}')">Eliminar</a>
                 </p>
                 <p class="card-text">
                     <a href="#" class="btn btn-info">Ver lista de zarpes</a>
@@ -32,6 +35,7 @@
             {!! Form::close() !!}
         </div>
     @endforeach
+    </div>
     <div class="card-deck">
         <div class="card">
             <img src="https://toogoodbuilt.com/wp-content/uploads/2015/02/user-placeholder.jpg" alt="" class="card-img-top" />

@@ -45,7 +45,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Embarcaciones</a>
+              <a class="nav-link" href="/embarcacion/">Embarcaciones</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Agenda</a>

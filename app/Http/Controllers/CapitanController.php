@@ -42,8 +42,7 @@ class CapitanController extends Controller
 
         if ($request->hasFile('photo')) {
             if ($request->file('photo')->isValid()) {
-                $path = $request->photo->store('images');
-                echo $path;
+                $path = $request->photo->store('images/capitan');
                 Capitan::create([
                     "name" => $request->nombre,
                     "fecha_nacimiento" => Carbon::createFromDate($request->año, $request->mes, $request->dia)->toDateString(),
