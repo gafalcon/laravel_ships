@@ -15,7 +15,7 @@ class AddImageToCapitan extends Migration
     {
         Schema::table('Capitan', function (Blueprint $table) {
             //
-            $table->string('image');
+            $table->string('image')->nullable();
         });
     }
 

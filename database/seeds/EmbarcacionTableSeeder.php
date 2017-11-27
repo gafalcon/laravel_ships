@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class EmbarcacionTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(CapitanTableSeeder::class);
-        $this->call(EmbarcacionTableSeeder::class);
+        factory(App\Embarcacion::class, 10)->create();
+        //
     }
 }

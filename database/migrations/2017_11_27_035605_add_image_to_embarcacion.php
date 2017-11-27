@@ -15,7 +15,7 @@ class AddImageToEmbarcacion extends Migration
     {
         Schema::table('Embarcacion', function (Blueprint $table) {
             //
-            $table->string('photo');
+            $table->string('photo')->nullable();
         });
     }
 

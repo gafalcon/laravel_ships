@@ -21,6 +21,8 @@ class CreateZarpesTable extends Migration
             $table->string('calidad');
             $table->integer('capitan_id')->unsigned();
             $table->foreign('capitan_id')->references('id')->on('Capitan');
+            $table->integer('embarcacion_id')->unsigned();
+            $table->foreign('embarcacion_id')->references('id')->on('Embarcacion')->onDelete('cascade');           //
         });
     }
 
