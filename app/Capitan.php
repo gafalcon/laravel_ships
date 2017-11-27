@@ -8,5 +8,5 @@ class Capitan extends Model
 {
     //
     protected $table = "Capitan";
-    protected $fillable = ["cedula", "fecha_nacimiento", "name"];
+    protected $fillable = ["cedula", "fecha_nacimiento", "name", "image"];
 }

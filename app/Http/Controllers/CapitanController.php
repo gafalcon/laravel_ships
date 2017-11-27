@@ -16,7 +16,8 @@ class CapitanController extends Controller
     public function index()
     {
         //
-        return view('capitan.index');
+        $captains = Capitan::all();
+        return view('capitan.index', compact("captains"));
     }
 
     /**
@@ -38,16 +39,27 @@ class CapitanController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $fecha_nacimiento = $request->fecha_nacimiento;
 
-        Capitan::create([
-            "name" => $request->nombre,
-            "fecha_nacimiento" => Carbon::createFromFormat("m/d/Y", $fecha_nacimiento)->toDateString(),
-            "cedula" => $request->cedula
-        ]);
-        return redirect('capitan');
-        // dd(request()->all());
+        if ($request->hasFile('photo')) {
+            if ($request->file('photo')->isValid()) {
+                $path = $request->photo->store('images');
+                echo $path;
+                Capitan::create([
+                    "name" => $request->nombre,
+                    "fecha_nacimiento" => Carbon::createFromDate($request->año, $request->mes, $request->dia)->toDateString(),
+                    "cedula" => $request->cedula,
+                    "image" => $path
+                ]);
+
+                return redirect('capitan');
+            }
+            else{
+                echo "invalid";
+            }
+        }else{
+            dd($request->all());
+            echo "has no file";
+        }
         // return dd($request);
     }
 
@@ -84,6 +96,7 @@ class CapitanController extends Controller
      */
     public function update(Request $request, Capitan $capitan)
     {
+        echo "Update";
         //
     }
 
@@ -95,6 +108,8 @@ class CapitanController extends Controller
      */
     public function destroy(Capitan $capitan)
     {
+        $capitan->delete();
+        return redirect('capitan');
         //
     }
 }
