@@ -28,112 +28,33 @@
                 <th scope="col">Embarcación</th>
                 <th scope="col">Capitán</th>
                 <th scope="col">Fecha de Salida</th>
-                <th scope="col">Fecha de Llegada</th>
+                <th scope="col">Fecha de Arribo</th>
                 <th scope="col"></th>
                 <th scope="col"></th>
                 <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>embarcacion</td>
-                <td>capitan 1</td>
-                <td>1/2/2017</td>
-                <td>11/2/2017</td>
-                <td><a class="btn btn-sm btn-info" href="">Ver más</a></td>
-                <td><a class="btn btn-sm btn-primary" href="">Editar</a></td>
-                <td><a class="btn btn-sm btn-danger" href="">Eliminar</a></td>
-            </tr>
+            @foreach ($zarpes as $zarpe)
+                <tr>
+                    <th scope="row">{{ $loop->iteration }}</th>
+                    <td>{{ $zarpe->embarcacion_id }}</td>
+                    <td>{{ $zarpe->capitan_id }}</td>
+                    <td>{{ $zarpe->fecha_salida }}</td>
+                    <td>{{ $zarpe->fecha_arribo }}</td>
+                    <td><a class="btn btn-sm btn-info" href="">Ver más</a></td>
+                    <td><a href="/zarpe/{{ $zarpe->id }}/editar" class="btn btn-sm btn-primary" >Editar</a></td>
+                    <td><a class="btn btn-sm btn-danger" href="#"  onclick="deleteModal({{ $zarpe->id }}, '# {{ $zarpe->id }}')">Eliminar</a></td>
+                </tr>
 
-            <tr>
-                <th scope="row">1</th>
-                <td>embarcacion</td>
-                <td>capitan 1</td>
-                <td>1/2/2017</td>
-                <td>11/2/2017</td>
-                <td><a class="btn btn-sm btn-info" href="">Ver más</a></td>
-                <td><a class="btn btn-sm btn-primary" href="">Editar</a></td>
-                <td><a class="btn btn-sm btn-danger" href="">Eliminar</a></td>
-            </tr>
-
-            <tr>
-                <th scope="row">1</th>
-                <td>embarcacion</td>
-                <td>capitan 1</td>
-                <td>1/2/2017</td>
-                <td>11/2/2017</td>
-                <td><a class="btn btn-sm btn-info" href="">Ver más</a></td>
-                <td><a class="btn btn-sm btn-primary" href="">Editar</a></td>
-                <td><a class="btn btn-sm btn-danger" href="">Eliminar</a></td>
-            </tr>
-
-            <tr>
-                <th scope="row">1</th>
-                <td>embarcacion</td>
-                <td>capitan 1</td>
-                <td>1/2/2017</td>
-                <td>11/2/2017</td>
-                <td><a class="btn btn-sm btn-info" href="">Ver más</a></td>
-                <td><a class="btn btn-sm btn-primary" href="">Editar</a></td>
-                <td><a class="btn btn-sm btn-danger" href="">Eliminar</a></td>
-            </tr>
-
-            <tr>
-                <th scope="row">1</th>
-                <td>embarcacion</td>
-                <td>capitan 1</td>
-                <td>1/2/2017</td>
-                <td>11/2/2017</td>
-                <td><a class="btn btn-sm btn-info" href="">Ver más</a></td>
-                <td><a class="btn btn-sm btn-primary" href="">Editar</a></td>
-                <td><a class="btn btn-sm btn-danger" href="">Eliminar</a></td>
-            </tr>
-
-            <tr>
-                <th scope="row">1</th>
-                <td>embarcacion</td>
-                <td>capitan 1</td>
-                <td>1/2/2017</td>
-                <td>11/2/2017</td>
-                <td><a class="btn btn-sm btn-info" href="">Ver más</a></td>
-                <td><a class="btn btn-sm btn-primary"  href="">Editar</a></td>
-                <td><a class="btn btn-sm btn-danger" href="">Eliminar</a></td>
-            </tr>
-
-            <tr>
-                <th scope="row">1</th>
-                <td>embarcacion</td>
-                <td>capitan 1</td>
-                <td>1/2/2017</td>
-                <td>11/2/2017</td>
-                <td><a class="btn btn-sm btn-info" href="">Ver más</a></td>
-                <td><a class="btn btn-sm btn-primary" href="">Editar</a></td>
-                <td><a class="btn btn-sm btn-danger" href="">Eliminar</a></td>
-            </tr>
-
-
-            <tr>
-                <th scope="row">1</th>
-                <td>embarcacion</td>
-                <td>capitan 1</td>
-                <td>1/2/2017</td>
-                <td>11/2/2017</td>
-                <td><a class="btn btn-sm btn-info" href="">Ver más</a></td>
-                <td><a class="btn btn-sm btn-primary" href="">Editar</a></td>
-                <td><a class="btn btn-sm btn-danger" href="">Eliminar</a></td>
-            </tr>
-
-            <tr>
-                <th scope="row">1</th>
-                <td>embarcacion</td>
-                <td>capitan 1</td>
-                <td>1/2/2017</td>
-                <td>11/2/2017</td>
-                <td><a class="btn btn-sm btn-info" href="">Ver más</a></td>
-                <td><a class="btn btn-sm btn-primary" href="">Editar</a></td>
-                <td><a class="btn btn-sm btn-danger" href="">Eliminar</a></td>
-            </tr>
+                {!! Form::open(['method'=> 'delete', 'action' => ['ZarpeController@destroy', $zarpe->id], "id" => "form_".$zarpe->id]) !!}
+                {!! Form::close() !!}
+            @endforeach
         </tbody>
     </table>
+    @include('components.modal_delete', ['model' => 'zarpe'])
+@endsection
+
+@section ('extras_javascript')
+    <script type="text/javascript" src="/js/delete_modal.js"></script>
 @endsection

@@ -1,6 +1,11 @@
 @extends ('template')
 
 @section ('content')
+    <style type="text/css">
+     .card-header-link:hover{
+         text-decoration: none;
+     }
+    </style>
     <h2>Lista de embarcaciones
         <a class="btn btn-primary" href="/embarcacion/crear">Registrar nueva</a>
     </h2>
@@ -10,110 +15,66 @@
         <button class="btn btn-secondary" type="button">Buscar</button>
       </span>
     </div>
-    <br/>
+    <div class="row">
+        <div class="col" >
+            <h5 class="mb-0" style="padding: 15px; font-weight: bold;">
+                Nombre
+                <span class="float-right">Código</span>
+            </h5>
+        </div>
+    </div>
     <div id="accordion" role="tablist">
-        <div class="card">
-            <div class="card-header" role="tab" id="headingOne">
-                <h5 class="mb-0">
-                    <a data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        Embarcación #1
+        @foreach ($embarcaciones as $embarcacion)
+            <div class="card">
+                <div class="card-header" role="tab" id="heading{{ $loop->iteration }}">
+                    <a class="card-header-link" data-toggle="collapse" href="#collapse{{ $loop->iteration }}" aria-expanded="true" aria-controls="collapseOne">
+                        <h6 class="mb-0" style="font-weight: bold;">
+                            <span class="float-right">{{ $embarcacion->codigo_barco }}</span>
+                             {{ $embarcacion->nombre }}
+                        </h6>
                     </a>
-                </h5>
-            </div>
+                </div>
 
-            <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col">
-                            <p><b>Código:</b> codigo</p>
-                            <p><b>Tipo:</b> Pesado</p>
-                            <p><b>Capacidad:</b> 100</p>
-                            <p><b>Dimensiones:</b> Dimension</p>
-                            <p>
-                                <button class="btn btn-primary">Editar</button>
-                                <button class="btn btn-danger">Eliminar</button>
-                            </p>
-                        </div>
-                        <div class="col">
-                            <img src="http://3.bp.blogspot.com/-w59cQXKVQiw/ToXVBNPdi3I/AAAAAAAAAAc/py4abX8AI2U/s1600/barco-pesquero+2.jpg" alt="" class="card-img-top" />
-                        </div> 
-                        <div class="col">
-                            <p>
-                                <button class="btn btn-info">Ver lista de zarpes</button>
-                            </p>
-                            <p><button class="btn btn-success">Zarpar</button></p>
+                <!-- Content -->
+                <div id="collapse{{ $loop->iteration }}" class="collapse" role="tabpanel" aria-labelledby="heading{{ $loop->iteration }}" data-parent="#accordion">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <p><b>Tipo:</b>
+                                    @if ($embarcacion->tipo == "1")
+                                        Pesado atunero
+                                    @else
+                                        Liviano sardinero
+                                    @endif
+                                </p>
+                                <p><b>Capacidad:</b> {{ $embarcacion->capacidad }}</p>
+                                <p><b>Dimensiones:</b> {{ $embarcacion->dimensiones }}</p>
+                                <p>
+                                    <a href="/embarcacion/{{ $embarcacion->id }}/editar" class="btn btn-primary">Editar</a>
+                                    <a href="#" class="btn btn-danger" onclick="deleteModal({{ $embarcacion->id }}, '{{ $embarcacion->nombre }}')">Eliminar</a>
+                                </p>
+                            </div>
+                            <div class="col">
+                                <img src="{{ $embarcacion->photo }}" alt="" class="card-img-top" />
+                            </div> 
+                            <div class="col">
+                                <p>
+                                    <a href="/zarpe?embarcacion={{ $embarcacion->id }}" class="btn btn-info">Ver lista de zarpes</a>
+                                </p>
+                                <p><button class="btn btn-success">Zarpar</button></p>
+                            </div>
                         </div>
                     </div>
                 </div>
+                {!! Form::open(['method'=> 'delete', 'action' => ['EmbarcacionController@destroy', $embarcacion->id], "id" => "form_".$embarcacion->id]) !!}
+                {!! Form::close() !!}
             </div>
-        </div>
-        <div class="card">
-            <div class="card-header" role="tab" id="headingTwo">
-                <h5 class="mb-0">
-                    <a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        Embarcación #2
-                    </a>
-                </h5>
-            </div>
-            <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
-                <div class="card-body">
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-header" role="tab" id="headingThree">
-                <h5 class="mb-0">
-                    <a class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        Embarcación #3
-                    </a>
-                </h5>
-            </div>
-            <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
-                <div class="card-body">
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-header" role="tab" id="headingThree">
-                <h5 class="mb-0">
-                    <a class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        Embarcación #4
-                    </a>
-                </h5>
-            </div>
-            <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
-                <div class="card-body">
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-header" role="tab" id="headingThree">
-                <h5 class="mb-0">
-                    <a class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        Embarcación #5
-                    </a>
-                </h5>
-            </div>
-            <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
-                <div class="card-body">
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-header" role="tab" id="headingThree">
-                <h5 class="mb-0">
-                    <a class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        Embarcación #6
-                    </a>
-                </h5>
-            </div>
-            <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
-                <div class="card-body">
-                </div>
-            </div>
-        </div>
+        @endforeach
     </div>
+
+    @include('components.modal_delete', ['model' => 'embarcación'])
+@endsection
+
+@section ('extras_javascript')
+    <script type="text/javascript" src="/js/delete_modal.js"></script>
 @endsection

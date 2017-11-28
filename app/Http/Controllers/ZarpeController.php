@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Zarpe;
 use Illuminate\Http\Request;
 
 class ZarpeController extends Controller
@@ -11,10 +12,17 @@ class ZarpeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        return view('zarpe.index');
+        if ($request->has('embarcacion')) {
+            //
+            $zarpes = Zarpe::where('embarcacion_id', $request->embarcacion);
+            return view('zarpe.index', compact("zarpes"));
+        }
+
+        $zarpes = Zarpe::all();
+        return view('zarpe.index', compact("zarpes"));
     }
 
     /**

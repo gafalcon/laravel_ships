@@ -47,7 +47,7 @@ class CapitanController extends Controller
                     "name" => $request->nombre,
                     "fecha_nacimiento" => Carbon::createFromDate($request->año, $request->mes, $request->dia)->toDateString(),
                     "cedula" => $request->cedula,
-                    "image" => $path
+                    "image" => "/storage/".$path
                 ]);
 
                 return redirect('capitan');

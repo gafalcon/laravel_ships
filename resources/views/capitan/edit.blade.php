@@ -2,7 +2,7 @@
 
 @section ('content')
     <h2>Editar Capitán</h2>
-    {!! Form::model($capitan, ['route' => ['capitan.update', $capitan->id]]) !!}
+    {!! Form::model($capitan, ['route' => ['capitan.update', $capitan->id], "files"=> true]) !!}
     <div class="row">
         <div class="col">
             <div class="form-group">
