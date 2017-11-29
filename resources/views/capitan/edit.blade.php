@@ -2,7 +2,7 @@
 
 @section ('content')
     <h2>Editar Capitán</h2>
-    {!! Form::model($capitan, ['route' => ['capitan.update', $capitan->id], "files"=> true]) !!}
+    {!! Form::model($capitan, ['route' => ['capitan.update', $capitan->id], "files"=> true, "method" => "PUT"]) !!}
     <div class="row">
         <div class="col-lg-6">
             <div class="form-group">
@@ -29,7 +29,7 @@
                 {!! Form::label('image', 'Foto') !!}
                 {!! Form::file('image', ["class" => 'form-control-file', 'onchange' => 'putImage()']) !!}
             </div>
-            <img id="target" src="{!! asset("storage/".$capitan->image) !!}" alt="" width="150" height="200" />
+            <img id="target" src="{!! $capitan->image !!}" alt="capitan" width="150" height="200" />
         </div>
     </div>
 

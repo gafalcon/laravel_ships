@@ -100,7 +100,22 @@ class CapitanController extends Controller
      */
     public function update(Request $request, Capitan $capitan)
     {
-        echo "Update";
+        // dd($request->all());
+        // dd($capitan);
+        $capitan->name = $request->name;
+        $capitan->cedula = $request->cedula;
+        $capitan->fecha_nacimiento = Carbon::createFromDate($request->año, $request->mes, $request->dia)->toDateString();
+
+
+        if ($request->hasFile('image')) {
+            if ($request->file('image')->isValid()) {
+                $path = $request->image->store('images/capitan');
+                $capitan->image = "/storage/".$path;
+            }
+        }
+
+        $capitan->save();
+        return redirect('capitan');
         //
     }
 
