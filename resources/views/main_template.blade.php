@@ -69,7 +69,9 @@
 
             @include('components.notification_button')
           <!-- user login dropdown start-->
+            @auth
             @include('components.login_dropdown')
+            @endauth
           <!-- user login dropdown end -->
         </ul>
         <!-- notificatoin dropdown end-->
