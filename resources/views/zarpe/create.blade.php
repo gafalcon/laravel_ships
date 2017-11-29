@@ -1,32 +1,22 @@
-@extends ('template')
+@extends ('main_template')
 
 @section ('content')
     <h2>Nueva Zarpe de Embarcación</h2>
-    <form>
+    {{ Form::open(['route' => 'zarpe.store']) }}
         <div class="form-group">
             <label for="embarcacion">Embarcación</label>
-            <select id="embarcacion" name="embarcacion" class="form-control">
-                <option selected>Seleccione Embarcación</option>
-                @foreach ($embarcaciones as $id => $name)
-                    <option value="{{ $id }}">{{ $name }}</option>
-                @endforeach
-            </select>
+            {{  Form::select('embarcacion_id', $embarcaciones, null, ["class" => "form-control", 'placeholder' => 'Seleccione embarcación']) }}
         </div>
 
         <div class="form-group">
             <label for="capitan">Capitán</label>
-            <select id="capitan" name="capitan" class="form-control" placeholder="seleccione capitan">
-                <option selected>Seleccione capitán</option>
-                @foreach ($capitanes as $id => $name)
-                    <option value="{{ $id }}">{{ $name }}</option>
-                @endforeach
-            </select>
+            {{  Form::select('capitan_id', $capitanes, null, ["class" => "form-control", 'placeholder' => 'seleccione capitán']) }}
         </div>
 
         <div class="form-group">
             <label for="fecha_salida">Fecha de Salida</label>
             <div class="input-group date" data-provide="datepicker">
-                <input type="text" class="form-control" id="fecha_salida">
+                {{ Form::text('fecha_salida', null, ["class"=>"form-control"]) }}
                 <div class="input-group-addon">
                     ...
                     <!-- <span class="glyphicon glyphicon-th"></span> -->
@@ -34,7 +24,7 @@
             </div>
         </div>
         <button type="submit" class="btn btn-primary">Registrar</button>
-    </form>
+     {!! Form::close() !!}
 @endsection
 
 @section ('extras_javascript')

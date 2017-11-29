@@ -1,5 +1,5 @@
 
-@extends ('template')
+@extends ('main_template')
 
 @section ('content')
 

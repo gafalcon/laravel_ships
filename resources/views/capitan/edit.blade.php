@@ -1,10 +1,10 @@
-@extends ('template')
+@extends ('main_template')
 
 @section ('content')
     <h2>Editar Capitán</h2>
     {!! Form::model($capitan, ['route' => ['capitan.update', $capitan->id], "files"=> true]) !!}
     <div class="row">
-        <div class="col">
+        <div class="col-lg-6">
             <div class="form-group">
                 <label for="name">Nombre</label>
                 {!! Form::text('name', null, ["class" => "form-control", "placeholder" => "Nombre"]) !!}
@@ -38,7 +38,7 @@
             </div>
         </div>
 
-        <div class="col">
+        <div class="col-lg-6">
             <div class="form-group">
                 {!! Form::label('image', 'Foto') !!}
                 {!! Form::file('image', ["class" => 'form-control-file', 'onchange' => 'putImage()']) !!}
@@ -49,7 +49,7 @@
 
     <br/>
 
-        <button type="submit" class="btn btn-primary">Registrar</button>
+        <button type="submit" class="btn btn-lg btn-primary">Editar</button>
 
      {!! Form::close() !!}
 @endsection

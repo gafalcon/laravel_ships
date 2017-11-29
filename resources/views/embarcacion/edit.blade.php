@@ -1,11 +1,11 @@
-@extends ('template')
+@extends ('main_template')
 
 @section ('content')
     <h2>Editar Embarcación</h2>
 
     {!! Form::model($embarcacion, ['route' => ['embarcacion.update', $embarcacion->id], "files"=>true]) !!}
         <div class="row">
-            <div class="col">
+            <div class="col-lg-6">
                 <div class="form-group">
                     <label for="nombre">Nombre de Embarcación</label>
                 {!! Form::text('nombre', null, ["class" => "form-control", "placeholder" => "Nombre"]) !!}
@@ -30,7 +30,7 @@
                     {!! Form::text('dimensiones', null, ["class" => "form-control", "placeholder" => "dimensión"]) !!}
                 </div>
             </div>
-            <div class="col">
+            <div class="col-lg-6">
                 <div class="form-group">
                     {!! Form::label('photo', 'Foto') !!}
                     {!! Form::file('photo', ["class" => 'form-control-file', 'onchange' => 'putImage()']) !!}
@@ -38,7 +38,7 @@
                 <img id="target" width="150" height="200" src="{{ $embarcacion->photo }}" />
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Registrar</button>
+        <button type="submit" class="btn btn-lg btn-primary">Editar</button>
      {!! Form::close() !!}
 @endsection
 

@@ -12,7 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('index');
+    $page_title = "Home";
+    return view('index', compact('page_title'));
 });
 
 Route::resources([

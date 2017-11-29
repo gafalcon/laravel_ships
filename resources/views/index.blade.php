@@ -1,5 +1,8 @@
-@extends ('template')
+@extends ('main_template')
 
 @section ('content')
-    This is the index page
+    <h2>Index</h2>
+@endsection
+
+@section ('extras_javascript')
 @endsection

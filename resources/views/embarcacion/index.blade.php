@@ -1,4 +1,4 @@
-@extends ('template')
+@extends ('main_template')
 
 @section ('content')
     <style type="text/css">
@@ -16,60 +16,65 @@
       </span>
     </div>
     <div class="row">
-        <div class="col" >
+        <div class="col-lg-12" >
             <h5 class="mb-0" style="padding: 15px; font-weight: bold;">
                 Nombre
                 <span class="float-right">Código</span>
             </h5>
         </div>
     </div>
-    <div id="accordion" role="tablist">
-        @foreach ($embarcaciones as $embarcacion)
-            <div class="card">
-                <div class="card-header" role="tab" id="heading{{ $loop->iteration }}">
-                    <a class="card-header-link" data-toggle="collapse" href="#collapse{{ $loop->iteration }}" aria-expanded="true" aria-controls="collapseOne">
-                        <h6 class="mb-0" style="font-weight: bold;">
-                            <span class="float-right">{{ $embarcacion->codigo_barco }}</span>
-                             {{ $embarcacion->nombre }}
-                        </h6>
-                    </a>
-                </div>
 
-                <!-- Content -->
-                <div id="collapse{{ $loop->iteration }}" class="collapse" role="tabpanel" aria-labelledby="heading{{ $loop->iteration }}" data-parent="#accordion">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col">
-                                <p><b>Tipo:</b>
-                                    @if ($embarcacion->tipo == "1")
-                                        Pesado atunero
-                                    @else
-                                        Liviano sardinero
-                                    @endif
-                                </p>
-                                <p><b>Capacidad:</b> {{ $embarcacion->capacidad }}</p>
-                                <p><b>Dimensiones:</b> {{ $embarcacion->dimensiones }}</p>
-                                <p>
-                                    <a href="/embarcacion/{{ $embarcacion->id }}/editar" class="btn btn-primary">Editar</a>
-                                    <a href="#" class="btn btn-danger" onclick="deleteModal({{ $embarcacion->id }}, '{{ $embarcacion->nombre }}')">Eliminar</a>
-                                </p>
-                            </div>
-                            <div class="col">
-                                <img src="{{ $embarcacion->photo }}" alt="" class="card-img-top" />
-                            </div> 
-                            <div class="col">
-                                <p>
-                                    <a href="/zarpe?embarcacion={{ $embarcacion->id }}" class="btn btn-info">Ver lista de zarpes</a>
-                                </p>
-                                <p><button class="btn btn-success">Zarpar</button></p>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel-group m-bot20" id="accordion">
+                @foreach ($embarcaciones as $embarcacion)
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{ $loop->iteration }}">
+                                    <span class="float-right">{{ $embarcacion->codigo_barco }}</span>
+                                    {{ $embarcacion->nombre }}
+                                </a>
+                            </h4>
+                        </div>
+
+                        <div id="collapse{{ $loop->iteration }}" class="panel-collapse collapse ">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <p><b>Tipo:</b>
+                                            @if ($embarcacion->tipo == "1")
+                                                Pesado atunero
+                                            @else
+                                                Liviano sardinero
+                                            @endif
+                                        </p>
+                                        <p><b>Capacidad:</b> {{ $embarcacion->capacidad }}</p>
+                                        <p><b>Dimensiones:</b> {{ $embarcacion->dimensiones }}</p>
+                                        <p>
+                                            <a href="/embarcacion/{{ $embarcacion->id }}/editar" class="btn btn-primary">Editar</a>
+                                            <a href="#" class="btn btn-danger" onclick="deleteModal({{ $embarcacion->id }}, '{{ $embarcacion->nombre }}')">Eliminar</a>
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <img src="{{ $embarcacion->photo }}" alt="" class="card-img-top" width="200" height="200" />
+                                    </div> 
+                                    <div class="col-lg-4">
+                                        <p>
+                                            <a href="/zarpe?embarcacion={{ $embarcacion->id }}" class="btn btn-info">Ver lista de zarpes</a>
+                                        </p>
+                                        <p><button class="btn btn-success">Zarpar</button></p>
+                                    </div>
+                                </div>
+                                {!! Form::open(['method'=> 'delete', 'action' => ['EmbarcacionController@destroy', $embarcacion->id], "id" => "form_".$embarcacion->id]) !!}
+                                {!! Form::close() !!}
                             </div>
                         </div>
                     </div>
-                </div>
-                {!! Form::open(['method'=> 'delete', 'action' => ['EmbarcacionController@destroy', $embarcacion->id], "id" => "form_".$embarcacion->id]) !!}
-                {!! Form::close() !!}
-            </div>
         @endforeach
+            </div>
+        </div>
+    </div>
     </div>
 
     @include('components.modal_delete', ['model' => 'embarcación'])
