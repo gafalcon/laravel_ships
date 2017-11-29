@@ -16,25 +16,11 @@
 
             <label for="fecha_nacimiento">Fecha de Nacimiento</label>
             <div class="form-inline">
-                {!! Form::selectRange('dia', 1, 31, 'dia', ["class" => "custom-select mb-2 mr-sm-2 mb-sm-0", "placeholder" => "dia"]) !!}
+                {!! Form::selectRange('dia', 1, 31, $fecha_nacimiento->day, ["class" => "custom-select mb-2 mr-sm-2 mb-sm-0", "placeholder" => "dia"]) !!}
 
-                <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="mes" name="mes">
-                    <option selected>mes</option>
-                    <option value="1">Enero</option>
-                    <option value="2">Febrero</option>
-                    <option value="3">Marzo</option>
-                    <option value="4">Abril</option>
-                    <option value="5">Mayo</option>
-                    <option value="6">Junio</option>
-                    <option value="7">Julio</option>
-                    <option value="8">Agosto</option>
-                    <option value="9">Septiembre</option>
-                    <option value="10">Octubre</option>
-                    <option value="11">Noviembre</option>
-                    <option value="12">Diciembre</option>
-                </select>
+                {{  Form::select('mes', ["0"=> "mes", "1" => "Enero", "2" => "Febrero", "3" => "Marzo", "4" => "Abril", "5" => "Mayo", "6" => "Junio", "7" => "Julio", "8" => "Agosto", "9" => "Septiembre", "10" => "Octubre", "11" => "Noviembre", "12"=> "Diciembre"], $fecha_nacimiento->month, ["class" => "custom-select mb-2 mr-sm-2 mb-sm-0", 'placeholder' => 'mes']) }}
 
-                {!! Form::selectRange('año', 1940, 2010, 'year', ['class' => 'custom-select mb-2 mr-sm-2 mb-sm-0', "placeholder" => "año"]) !!}
+                {!! Form::selectRange('año', 1940, 2010, $fecha_nacimiento->year, ['class' => 'custom-select mb-2 mr-sm-2 mb-sm-0', "placeholder" => "año"]) !!}
             </div>
         </div>
 
