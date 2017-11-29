@@ -22,3 +22,6 @@ Route::resources([
     'zarpe' => 'ZarpeController',
     'lance' => 'LanceController'
 ]);
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
