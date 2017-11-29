@@ -6,16 +6,20 @@
         <div class="form-group">
             <label for="embarcacion">Embarcación</label>
             <select id="embarcacion" name="embarcacion" class="form-control">
-                <option value="">barco 1</option>
-                <option value="">barco 2</option>
+                <option selected>Seleccione Embarcación</option>
+                @foreach ($embarcaciones as $id => $name)
+                    <option value="{{ $id }}">{{ $name }}</option>
+                @endforeach
             </select>
         </div>
 
         <div class="form-group">
             <label for="capitan">Capitán</label>
-            <select id="capitan" name="capitan" class="form-control">
-                <option value="">capitan 1</option>
-                <option value="">capitan 2</option>
+            <select id="capitan" name="capitan" class="form-control" placeholder="seleccione capitan">
+                <option selected>Seleccione capitán</option>
+                @foreach ($capitanes as $id => $name)
+                    <option value="{{ $id }}">{{ $name }}</option>
+                @endforeach
             </select>
         </div>
 

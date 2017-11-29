@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Zarpe;
+use App\Capitan;
+use App\Embarcacion;
 use Illuminate\Http\Request;
 
 class ZarpeController extends Controller
@@ -17,7 +19,7 @@ class ZarpeController extends Controller
         //
         if ($request->has('embarcacion')) {
             //
-            $zarpes = Zarpe::where('embarcacion_id', $request->embarcacion);
+            $zarpes = Zarpe::where('embarcacion_id', $request->embarcacion)->get();
             return view('zarpe.index', compact("zarpes"));
         }
 
@@ -33,7 +35,9 @@ class ZarpeController extends Controller
     public function create()
     {
         //
-        return view('zarpe.create');
+        $capitanes = Capitan::pluck('name', 'id');
+        $embarcaciones = Embarcacion::pluck("nombre", 'id');
+        return view('zarpe.create', compact(['capitanes', 'embarcaciones']));
     }
 
     /**
@@ -64,8 +68,11 @@ class ZarpeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Zarpe $zarpe)
     {
+        $capitanes = Capitan::pluck('name', 'id');
+        $embarcaciones = Embarcacion::pluck("nombre", 'id');
+        return view('zarpe.edit', compact(['zarpe', 'capitanes', 'embarcaciones']));
         //
     }
 
@@ -87,8 +94,10 @@ class ZarpeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Zarpe $zarpe)
     {
+        $zarpe->delete();
+        return redirect('zarpe');
         //
     }
 }

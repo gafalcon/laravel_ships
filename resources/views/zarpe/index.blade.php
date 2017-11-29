@@ -44,7 +44,7 @@
                     <td>{{ $zarpe->fecha_arribo }}</td>
                     <td><a class="btn btn-sm btn-info" href="">Ver más</a></td>
                     <td><a href="/zarpe/{{ $zarpe->id }}/editar" class="btn btn-sm btn-primary" >Editar</a></td>
-                    <td><a class="btn btn-sm btn-danger" href="#"  onclick="deleteModal({{ $zarpe->id }}, '# {{ $zarpe->id }}')">Eliminar</a></td>
+                    <td><button class="btn btn-sm btn-danger" onclick="deleteModal({{ $zarpe->id }}, '# {{ $zarpe->id }}')">Eliminar</button></td>
                 </tr>
 
                 {!! Form::open(['method'=> 'delete', 'action' => ['ZarpeController@destroy', $zarpe->id], "id" => "form_".$zarpe->id]) !!}
