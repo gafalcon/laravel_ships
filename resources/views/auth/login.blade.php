@@ -48,7 +48,7 @@
                         </span>
                     @endif
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="icon_profile"></i></span>
+                        <span class="input-group-addon"><i class="icon_mail"></i></span>
                         <input placeholder="correo electrónico" id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
                     </div>
                     @if ($errors->has('password'))

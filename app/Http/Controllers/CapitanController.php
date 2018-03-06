@@ -17,7 +17,8 @@ class CapitanController extends Controller
     {
         //
         $captains = Capitan::all();
-        return view('capitan.index', compact("captains"));
+        $page_title = "Capitanes";
+        return view('capitan.index', compact("captains", "page_title"));
     }
 
     /**
@@ -28,7 +29,8 @@ class CapitanController extends Controller
     public function create()
     {
         //
-        return view('capitan.create');
+        $page_title = "Capitanes";
+        return view('capitan.create', compact("page_title"));
     }
 
     /**
@@ -39,7 +41,7 @@ class CapitanController extends Controller
      */
     public function store(Request $request)
     {
-
+        $page_title = "Capitanes";
         if ($request->hasFile('photo')) {
             if ($request->file('photo')->isValid()) {
                 $path = $request->photo->store('images/capitan');
@@ -71,7 +73,8 @@ class CapitanController extends Controller
     public function show(Capitan $capitan)
     {
         //
-        return view('capitan.show');
+        $page_title = "Capitanes";
+        return view('capitan.show', 'page_title');
     }
 
     /**
@@ -83,7 +86,9 @@ class CapitanController extends Controller
     public function edit(Capitan $capitan)
     {
         //
-        return view('capitan.edit', compact('capitan'));
+        $page_title = "Capitanes";
+        $fecha_nacimiento = Carbon::parse($capitan->fecha_nacimiento);
+        return view('capitan.edit', compact('capitan', 'page_title', 'fecha_nacimiento'));
     }
 
     /**
@@ -95,7 +100,22 @@ class CapitanController extends Controller
      */
     public function update(Request $request, Capitan $capitan)
     {
-        echo "Update";
+        // dd($request->all());
+        // dd($capitan);
+        $capitan->name = $request->name;
+        $capitan->cedula = $request->cedula;
+        $capitan->fecha_nacimiento = Carbon::createFromDate($request->año, $request->mes, $request->dia)->toDateString();
+
+
+        if ($request->hasFile('image')) {
+            if ($request->file('image')->isValid()) {
+                $path = $request->image->store('images/capitan');
+                $capitan->image = "/storage/".$path;
+            }
+        }
+
+        $capitan->save();
+        return redirect('capitan');
         //
     }
 
