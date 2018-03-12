@@ -11,10 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    $page_title = "Home";
-    return view('index', compact('page_title'));
-});
+// Route::get('/', function () {
+//     $page_title = "Home";
+//     return view('index', compact('page_title'));
+// });
 
 Route::resources([
     'embarcacion' => 'EmbarcacionController',
@@ -25,3 +25,4 @@ Route::resources([
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
