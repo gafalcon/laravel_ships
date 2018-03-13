@@ -9877,3 +9877,5 @@ span.customSelect.changed {
 body{
     background: #f2f3f5;
 }
+
+#mapid { height: 400px; }
