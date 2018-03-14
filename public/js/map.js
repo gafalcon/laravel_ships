@@ -4,7 +4,17 @@ var initMap = function(){
     console.log("init map")
     var map = new GMaps({
         el: '#mapid',
-        lat: -12.043333,
-        lng: -77.028333
+        lat: -2.17,
+        lng: -81.02,
+        zoom: 10
+    });
+
+    map.addMarker({
+        lat: -2.17,
+        lng: -81.02,
+        title: 'Embarcación 1',
+        click: function(e) {
+            alert('You clicked in this marker');
+        }
     });
 }
