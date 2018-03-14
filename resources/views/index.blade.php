@@ -4,6 +4,9 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
           integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
           crossorigin=""/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.css" rel="stylesheet"/> 
+
 
     <div class="container-fluid">
         <div class="row">
@@ -76,6 +79,17 @@
                 <div id="mapid"></div>
             </div>
         </div>
+        <br/>
+        <div class="row">
+            <div class="col-lg-6">
+                <h2>Eventos</h2>
+                <div id='calendar'></div>
+            </div>
+            <div class="col-lg-6">
+                <h2>Gráfico de pesca</h2>
+                <canvas id="myChart" width="400" height="300"></canvas>
+            </div>
+        </div>
     </div>
 @endsection
 
@@ -85,4 +99,33 @@
   type="text/javascript"></script>
   <script src="/js/gmaps.js"></script>
   <script src="/js/map.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+<script>
+var ctx = document.getElementById("myChart").getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio"],
+        datasets: [{
+            label: '# de Toneladas de pesca por tiempo',
+            data: [420, 190, 303, 502, 200, 301],
+            borderWidth: 1,
+            borderColor: 'blue',
+            backgroundColor: 'rgba(0,0,255,.2)'
+        }]
+
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+}); 
+</script>
 @endsection
